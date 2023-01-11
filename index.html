@@ -1,13 +1,68 @@
-<!DOCTYPE html>
-<html lang="en-US">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.3/dist/flatly/bootstrap.css" rel="stylesheet" />
-        <title>SearchOnce</title>
-        <!-- intiial idea for the title -->
-    </head>
-    <body>
-      
-    </body>
+ <!-- Meriam-Webster, Oxford i Collins -->
+
+ <!-- https://codesandbox.io/examples/package/oxford-dictionaries-api -->
+
+
+ <!DOCTYPE html>
+ <html lang="en">
+ 
+ <head>
+   <meta charset="utf-8">
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+   <title>SearchOnce</title>
+   <link href="./assets/css/styles.css" rel="stylesheet">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">  <!-- https://fontawesome.com/v4/icons/ -->
+
+   <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.3/dist/flatly/bootstrap.css" rel="stylesheet" />
+
+   <!-- <link href="./assets/css/bootstrap.css" rel="stylesheet"> -->
+
+   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> -->
+ </head>
+ 
+ <body>
+ 
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a id="logo">Logo</a>
+        <a href="subpages/dictionaries.html">Dictionaries </a>
+        <a href="subpages/about.html">About</a>
+        <a href="subpages/contact.html">Contact</a>
+        <div class="darkmode_toggle">
+          <button class="darkmode_button" onclick="dark_mode_toggle()"><i class="fa fa-moon-o" aria-hidden="true"></i></button>
+        </div>
+    </nav>
+    <article>
+        <section id="instruction">
+            <div>
+                <div>SearchOnce</div>
+                <p>Select dictionaries and search for definitions or synonyms of your word.</p>
+            </div>
+        </section>
+        <section id="search">
+            <div id="dictionaries">
+                <button>Meriam-Webster</button>
+                <button>Oxford</button>
+                <button>Collins</button>
+                <button>Wiktionary</button>
+                <button>Wordnik</button>
+            </div>
+            <div id="input">
+                <input><button><i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div id="results">
+                <ul>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, dolore dolores mollitia non odio iusto iure earum cum consectetur porro impedit veniam cupiditate! Placeat similique inventore voluptate quis saepe officia.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, dolore dolores mollitia non odio iusto iure earum cum consectetur porro impedit veniam cupiditate! Placeat similique inventore voluptate quis saepe officia.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, dolore dolores mollitia non odio iusto iure earum cum consectetur porro impedit veniam cupiditate! Placeat similique inventore voluptate quis saepe officia.</li>
+                </ul>
+            </div>
+        </section>
+    </article>
+
+    <footer>&#169; all rights reserved</footer>
+    
+    <script src="./assets/js/script.js"></script>
+</body>
 </html>
