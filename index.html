@@ -8,42 +8,47 @@
   <link href="./assets/css/styles.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">  <!-- https://fontawesome.com/v4/icons/ -->
   <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.3/dist/flatly/bootstrap.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  <script src="./assets/js/script.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
 <body>
-   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-       <div class="container-fluid">
-           <a class="navbar-brand" href="#">Logo</a>
-           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-               <span class="navbar-toggler-icon"></span>
-           </button>
-           <div class="collapse navbar-collapse" id="navbarColor01">
-               <ul class="navbar-nav me-auto">
-                 <li class="nav-item">
-                   <a class="nav-link" href="subpages/dictionaries.html">Dictionaries</a>
-                 </li>
-                 <li class="nav-item">
-                   <a class="nav-link" href="subpages/about.html">About the project</a>
-                 </li>
-                 <li class="nav-item">
-                   <a class="nav-link" href="subpages/contact.html">Contact</a>
-                 </li>
-               </ul>
-               <div class="darkmode_toggle">
-                 <button class="darkmode_button" onclick="dark_mode_toggle()"><i class="fa fa-moon-o" aria-hidden="true"></i></button>
-               </div>
-           </div>
-       </div>
-   </nav>
+  <!-- Live Server extension needs to be downloaded, and Go Live clicked on to make nav work (in Pycharm, Live Edit or sth)-->
+   <!--Navigation bar-->
+  <div id="nav-placeholder">
+
+  </div>
+  <script>
+    $(function(){
+      $("#nav-placeholder").load("nav.html");
+    });
+  </script>
+  <!--end of Navigation bar-->
+    
    <article>
        <section id="instruction">
            <div>
-               <div>SearchOnce</div>
-               <p>Select dictionaries and search for definitions or synonyms of your word.</p>
+               <div><h1>SearchOnce</h1></div>
+               <h5>Select dictionaries and search for definitions or synonyms of your word.</h5>
            </div>
        </section>
        <section id="search">
            <div id="dictionaries">
+  <!--My suggestion regarding checkboxes-->
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked="">
+              <label class="form-check-label" for="flexCheckChecked">
+                <p>All dictionaries</p>
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                <p>Merriam-Webster</p>
+              </label>
+            </div>
+<!--End-->
                <button>Meriam-Webster</button>
                <button>Oxford</button>
                <button>Collins</button>
@@ -63,8 +68,6 @@
            </div>
        </section>
    </article>
-   <footer>&#169; some rights reserved</footer>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-   <script src="./assets/js/script.js"></script>
+   <footer>&#169; Some rights reserved.</footer>
 </body>
 </html>
