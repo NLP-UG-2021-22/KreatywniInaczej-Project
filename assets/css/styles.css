@@ -35,6 +35,10 @@ li {
 /* #endregion GLOBAL ========================== */
 /* #region MAIN ==============================*/
 
+#instruction {
+    padding: 10vh;
+}
+
 #dictionaries {
     display: flex;
     flex-direction: column;
@@ -45,6 +49,20 @@ li {
     padding-bottom: 20px;
     text-align:center;
 
+}
+
+#dictionaries button {
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.greyscale {
+    filter: grayscale(100%);
+}
+
+#results {
+    padding-right: 10vw;
 }
 
 /* #endregion MAIN ===========================*/

@@ -6,66 +6,97 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>SearchOnce</title>
   <link href="./assets/css/styles.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.3/dist/flatly/bootstrap.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
   <script src="./assets/js/script.js"></script>
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
 <body>
   <!-- Live Server extension needs to be downloaded, and Go Live clicked on to make nav work (in Pycharm, Live Edit or sth)-->
-   <!--Navigation bar-->
+  <!--Navigation bar-->
   <div id="nav-placeholder"></div>
   <script>
-    $(function(){
+    $(function () {
       $("#nav-placeholder").load("nav.html");
     });
   </script>
   <!--end of Navigation bar-->
-    
-   <article>
-       <section id="instruction">
-           <div>
-               <div><h1>SearchOnce</h1></div>
-               <h5>Select dictionaries and search for definitions or synonyms of your word.</h5>
-           </div>
-       </section>
-       <section id="search">
-           <div id="dictionaries">
-  <!--My suggestion regarding checkboxes-->
+
+  <article>
+    <div class="container">
+
+      <div class="row">
+        <section id="instruction">
+          <div>
+            <div>
+              <h1>SearchOnce</h1>
+            </div>
+            <h5>Select dictionaries and search for definitions or synonyms of your word.</h5>
+          </div>
+          <div id="input">
+            <input><button><i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <div class="row">
+        <div class="col-2">
+          <section id="dictionaries">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked="">
               <label class="form-check-label" for="flexCheckChecked">
-                <p>All dictionaries</p>
+                <p>select all</p>
               </label>
             </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-              <label class="form-check-label" for="flexCheckDefault">
-                <p>Merriam-Webster</p>
-              </label>
+            <button id="Meriam-Webster-button" class="dictionary_logo"><img src="./assets/img/placeholder_logo.png"
+                alt="Meriam-Webster" width="90vh" onclick="deactivateLogo('Meriam-Webster-button')"></button>
+            <button id="Oxford-button" class="dictionary_logo"><img src="./assets/img/placeholder_logo.png" alt="Oxford"
+                width="90vh" onclick="deactivateLogo('Oxford-button')"></button>
+            <button id="Collins-button" class="dictionary_logo"><img src="./assets/img/placeholder_logo.png"
+                alt="Collins" width="90vh" onclick="deactivateLogo('Collins-button')"></button>
+            <button id="Wiktionary-button" class="dictionary_logo"><img src="./assets/img/placeholder_logo.png"
+                alt="Wiktionary" width="90vh" onclick="deactivateLogo('Wiktionary-button')"></button>
+            <button id="Wordnik-button" class="dictionary_logo"><img src="./assets/img/placeholder_logo.png"
+                alt="Wordnik" width="90vh" onclick="deactivateLogo('Wordnik-button')"></button>
+            <button id="Urban-button" class="dictionary_logo"><img src="./assets/img/placeholder_logo.png" alt="Urban"
+                width="90vh" onclick="deactivateLogo('Urban-button')"></button>
+          </section>
+        </div>
+        <div class="col-10">
+          <section id="search">
+            <div id="results">
+              <ul>
+                <li>
+                  <h6>Meriam-Webster</h6>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda consequatur, excepturi
+                    error ab provident aperiam magnam, sunt veritatis eligendi alias, quos libero! Facilis fugit, est
+                    dolore animi tenetur eveniet.</p>
+                </li>
+                <li>
+                  <h6>Meriam-Webster</h6>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda consequatur, excepturi
+                    error ab provident aperiam magnam, sunt veritatis eligendi alias, quos libero! Facilis fugit, est
+                    dolore animi tenetur eveniet.</p>
+                </li>
+                <li>
+                  <h6>Meriam-Webster</h6>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda consequatur, excepturi
+                    error ab provident aperiam magnam, sunt veritatis eligendi alias, quos libero! Facilis fugit, est
+                    dolore animi tenetur eveniet.</p>
+                </li>
+              </ul>
             </div>
-<!--End-->
-               <button>Meriam-Webster</button>
-               <button>Oxford</button>
-               <button>Collins</button>
-               <button>Wiktionary</button>
-               <button>Wordnik</button>
-           </div>
-           <div id="input">
-               <input><button><i class="fa fa-search" aria-hidden="true"></i>
-               </button>
-           </div>
-           <div id="results">
-               <ul>
-                   <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, dolore dolores mollitia non odio iusto iure earum cum consectetur porro impedit veniam cupiditate! Placeat similique inventore voluptate quis saepe officia.</li>
-                   <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, dolore dolores mollitia non odio iusto iure earum cum consectetur porro impedit veniam cupiditate! Placeat similique inventore voluptate quis saepe officia.</li>
-                   <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, dolore dolores mollitia non odio iusto iure earum cum consectetur porro impedit veniam cupiditate! Placeat similique inventore voluptate quis saepe officia.</li>
-               </ul>
-           </div>
-       </section>
-   </article>
-   <footer>&#169; Some rights reserved.</footer>
+          </section>
+        </div>
+      </div>
+    </div>
+  </article>
+  <footer>&#169; Some rights reserved.</footer>
 </body>
 </html>
