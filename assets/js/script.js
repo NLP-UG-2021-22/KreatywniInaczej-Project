@@ -9,7 +9,6 @@ function deactivate(dictionary) {
 
 function OnChangeCheckbox(checkbox) {
     if (checkbox.checked) {
-
         $('#dictionaries > button').each(function() {
             this.classList.remove("greyscale") });
         $('#results ul > li').each(function() {
