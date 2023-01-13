@@ -6,7 +6,6 @@ function deactivate(dictionary) {
     dictionaryOutput.classList.toggle("hidden")
 }
 
-
 function OnChangeCheckbox(checkbox) {
     if (checkbox.checked) {
         $('#dictionaries > button').each(function() {
