@@ -15,15 +15,15 @@ article {
 }
 
 footer {
-    min-height: 50px; 
+    min-height: 6.43vh; 
     background:#F4F6F6;
     text-align: center;
-    padding-top: 10px;
+    padding-top: 0.6vw;
 }
 
 li {
     list-style-type: none;
-    padding-top: 10px;
+    padding-top: 0.6vw;
   }
 
 
@@ -46,7 +46,7 @@ li {
     justify-content: space-between;
     padding-left: 30%;
     padding-right: 30%;
-    padding-bottom: 20px;
+    padding-bottom: 2.6vh;
     text-align:center;
 
 }
@@ -73,5 +73,34 @@ li {
 .hidden {
     display: none;
 }
+
+.underNav {
+    padding: 2%;
+}
+
+a {
+    color: #18bc9c;
+}
+
+a:hover {
+    color: #f39c12;
+}
+
+#aboutTheProject {
+    padding: 1% 10%;
+    text-align: justify;
+}
+
+#bookDiv {
+    text-align: center;
+}
+
+#book {
+    width: 45%;
+    justify-content: center;
+    box-shadow: 0 0 8px 8px white inset;
+    border-radius: 2%;
+}
+
 
 /* #endregion MAIN ===========================*/
