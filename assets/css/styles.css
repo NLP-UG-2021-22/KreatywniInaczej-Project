@@ -104,3 +104,15 @@ a:hover {
 
 
 /* #endregion MAIN ===========================*/
+
+/* #region DICTIONARIES ==============================*/
+#dict-description {
+    margin: auto;
+    max-width: 1000px;
+}
+
+#dict-img {
+    max-width: 120px;
+    padding: 10px;
+}
+/* #endregion DICTIONARIES ===========================*/
