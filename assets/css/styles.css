@@ -112,6 +112,7 @@ a:hover {
 }
 
 #dict-img {
+    float: left;
     max-width: 120px;
     padding: 10px;
 }
