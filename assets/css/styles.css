@@ -44,11 +44,27 @@ li {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding-left: 30%;
-    padding-right: 30%;
+    padding-left: 5%;
     padding-bottom: 2.6vh;
     text-align:center;
+    min-width: fit-content !important;
 
+}
+
+#dictionaries .form-check {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#dictionaries .form-check .form-check-input{
+    padding-right: 0.1vw;
+}
+
+#dictionaries .form-check .form-check-label{
+    padding-right: 1.2vw;
+    padding-top: 0.2vw;
+    font-variant: small-caps;
 }
 
 #dictionaries button {
