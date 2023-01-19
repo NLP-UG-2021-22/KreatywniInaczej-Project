@@ -116,3 +116,15 @@ nav li:hover {
     background-image: radial-gradient(circle, rgba(236, 237, 241, 1) 10%, rgba(201, 207, 230, 1) 90%);
 }
 /* #endregion MAIN ===========================*/
+
+/* #region DICTIONARIES ==============================*/
+#dict-description {
+    margin: auto;
+    max-width: 1000px;
+}
+
+#dict-img {
+    max-width: 120px;
+    padding: 10px;
+}
+/* #endregion DICTIONARIES ===========================*/
