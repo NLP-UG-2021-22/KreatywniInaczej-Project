@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>SearchOnce</title>
+  <link rel="icon" type="image/x-icon" href="./assets/img/favicon.png">
   <link href="./assets/css/styles.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
     integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -16,8 +17,8 @@
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
-<body>
-  <!-- Live Server extension needs to be downloaded, and Go Live clicked on to make nav work (in Pycharm, Live Edit or sth)-->
+<body id="home">
+  <!--Live Server extension needs to be downloaded, and Go Live clicked on-->
   <!--Navigation bar-->
   <div id="nav-placeholder"></div>
   <script>
@@ -26,6 +27,12 @@
     });
   </script>
   <!--end of Navigation bar-->
+
+  <div class="alert alert-dismissible alert-warning">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    <h4 class="alert-heading">Warning!</h4>
+    <p class="mb-0">Website under construction. :)</p>
+  </div>  
 
   <article>
     <div class="container">

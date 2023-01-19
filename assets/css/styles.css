@@ -99,7 +99,7 @@ a {
 }
 
 a:hover {
-    color: #f39c12;
+    color: #f39c12 !important;
 }
 
 #aboutTheProject {
@@ -114,11 +114,23 @@ a:hover {
 #book {
     width: 45%;
     justify-content: center;
-    box-shadow: 0 0 8px 8px white inset;
     border-radius: 2%;
+    box-shadow: 0 0 5px 5px whitesmoke;
 }
 
+nav li:hover {
+    cursor: pointer;
+}
 
+#logo {
+    max-height: 8vh;
+    border-radius: 50%;
+}
+
+#home {
+    background-color: rgba(236, 237, 241, 1);
+    background-image: radial-gradient(circle, rgba(236, 237, 241, 1) 10%, rgba(201, 207, 230, 1) 90%);
+}
 /* #endregion MAIN ===========================*/
 
 /* #region DICTIONARIES ==============================*/
