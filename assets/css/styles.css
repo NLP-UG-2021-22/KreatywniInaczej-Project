@@ -131,6 +131,23 @@ nav li:hover {
     background-color: rgba(236, 237, 241, 1);
     background-image: radial-gradient(circle, rgba(236, 237, 241, 1) 10%, rgba(201, 207, 230, 1) 90%);
 }
+
+#contact, #about {
+    text-align: center;
+}
+
+.table-primary {
+    --bs-table-color: #000; 
+    --bs-table-hover-color: #000;
+}
+
+.table-secondary {
+    --bs-table-bg: #d7dbdc; 
+    --bs-table-color: #000; 
+    --bs-table-hover-color: #000; 
+    --bs-table-hover-bg: #ecf0f1;
+}
+
 /* #endregion MAIN ===========================*/
 
 /* #region DICTIONARIES ==============================*/
