@@ -32,7 +32,7 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     <h4 class="alert-heading">Warning!</h4>
     <p class="mb-0">Website under construction. :)</p>
-  </div>  
+  </div>
 
   <article>
     <div class="container">
@@ -46,7 +46,7 @@
             <h5>Select dictionaries and search for definitions or synonyms of your word.</h5>
           </div>
           <div id="input">
-            <input placeholder="e.g. word"><button><i class="fa fa-search" aria-hidden="true"></i>
+            <input placeholder="e.g. word"><button><i class="fa fa-search" aria-hidden="true" onclick="getResults()"></i>
             </button>
           </div>
         </section>
@@ -54,23 +54,20 @@
 
       <div class="row">
         <div class="col-2">
+          <div class="form-check">
+            <button id="toggleLogosButton" onclick="ToggleLogos()">toggle all</button>
+          </div>
           <section id="dictionaries">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" onclick="OnChangeCheckbox(this)" id="flexCheckChecked" checked>
-              <label class="form-check-label" for="flexCheckChecked">
-                <p>select all</p>
-              </label>
-            </div>
             <button id="Meriam-Webster-button" class="dictionary_logo"><img src="./assets/img/Meriam-Webster-logo.png"
                 alt="Meriam-Webster" width="90vh" onclick="deactivate('Meriam-Webster')"></button>
             <button id="Oxford-button" class="dictionary_logo"><img src="./assets/img/Oxford-logo.png" alt="Oxford"
                 width="90vh" onclick="deactivate('Oxford')"></button>
-            <button id="Collins-button" class="dictionary_logo"><img src="./assets/img/Collins-logo.png"
-                alt="Collins" width="100vh" onclick="deactivate('Collins')"></button>
+            <button id="Collins-button" class="dictionary_logo"><img src="./assets/img/Collins-logo.png" alt="Collins"
+                width="100vh" onclick="deactivate('Collins')"></button>
             <button id="Wiktionary-button" class="dictionary_logo"><img src="./assets/img/Wiktionary-logo.png"
                 alt="Wiktionary" width="80vh" onclick="deactivate('Wiktionary')"></button>
-            <button id="Urban-button" class="dictionary_logo"><img src="./assets/img/Urban_Dictionary_logo.png" alt="Urban"
-                width="90vh" onclick="deactivate('Urban')"></button>
+            <button id="Urban-button" class="dictionary_logo"><img src="./assets/img/Urban_Dictionary_logo.png"
+                alt="Urban" width="90vh" onclick="deactivate('Urban')"></button>
           </section>
         </div>
         <div class="col-10">
@@ -78,34 +75,24 @@
             <div id="results">
               <ul>
                 <li id="Meriam-Webster-output">
-                  <h6>Meriam-Webster</h6>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda consequatur, excepturi
-                    error ab provident aperiam magnam, sunt veritatis eligendi alias, quos libero! Facilis fugit, est
-                    dolore animi tenetur eveniet.</p>
+                  <h6></h6>
+                  <p></p>
                 </li>
                 <li id="Oxford-output">
-                  <h6>Oxford</h6>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda consequatur, excepturi
-                    error ab provident aperiam magnam, sunt veritatis eligendi alias, quos libero! Facilis fugit, est
-                    dolore animi tenetur eveniet.</p>
+                  <h6></h6>
+                  <p></p>
                 </li>
                 <li id="Collins-output">
-                  <h6>Collins</h6>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda consequatur, excepturi
-                    error ab provident aperiam magnam, sunt veritatis eligendi alias, quos libero! Facilis fugit, est
-                    dolore animi tenetur eveniet.</p>
+                  <h6></h6>
+                  <p></p>
                 </li>
                 <li id="Wiktionary-output">
-                  <h6>Wiktionary</h6>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda consequatur, excepturi
-                    error ab provident aperiam magnam, sunt veritatis eligendi alias, quos libero! Facilis fugit, est
-                    dolore animi tenetur eveniet.</p>
+                  <h6></h6>
+                  <p></p>
                 </li>
                 <li id="Urban-output">
-                  <h6>Urban</h6>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda consequatur, excepturi
-                    error ab provident aperiam magnam, sunt veritatis eligendi alias, quos libero! Facilis fugit, est
-                    dolore animi tenetur eveniet.</p>
+                  <h6></h6>
+                  <p></p>
                 </li>
               </ul>
             </div>
