@@ -80,7 +80,7 @@ li {
 }
 
 .underNav {
-    padding: 2%;
+    padding: 4%;
 }
 
 a {
@@ -123,6 +123,11 @@ nav li:hover {
 
 #contact, #about {
     text-align: center;
+}
+
+.table {
+    width: 70%;
+    justify-content: center;
 }
 
 .table-primary {
