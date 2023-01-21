@@ -56,7 +56,11 @@ nav li:hover {
 #home {
     background-color: rgba(236, 237, 241, 1);
     background-image: radial-gradient(circle, rgba(236, 237, 241, 1) 10%, rgba(201, 207, 230, 1) 90%);
-}    
+}
+
+footer {
+    margin-top: auto;
+}
 
 /* #endregion GLOBAL ========================== */
 /* #region MAIN ==============================*/
