@@ -32,6 +32,32 @@ li {
     background-color: black;
 }
 
+.underNav {
+    padding: 4%;
+}
+
+a {
+    color: #18bc9c;
+}
+
+a:hover {
+    color: #f39c12 !important;
+}
+
+nav li:hover {
+    cursor: pointer;
+}
+
+#logo {
+    max-height: 8vh;
+    border-radius: 50%;
+}
+
+#home {
+    background-color: rgba(236, 237, 241, 1);
+    background-image: radial-gradient(circle, rgba(236, 237, 241, 1) 10%, rgba(201, 207, 230, 1) 90%);
+}    
+
 /* #endregion GLOBAL ========================== */
 /* #region MAIN ==============================*/
 
@@ -79,18 +105,27 @@ li {
     display: none;
 }
 
-.underNav {
-    padding: 4%;
+/* #endregion MAIN ===========================*/
+/* #region DICTIONARIES ==============================*/
+#dict-description {
+    margin: auto;
+    max-width: 1000px;
 }
 
-a {
-    color: #18bc9c;
+#dict-img {
+    max-width: 120px;
+    padding: 10wv;
 }
 
-a:hover {
-    color: #f39c12 !important;
+#dictionariesBody .col-md-10 {
+    padding-top: 1%;
+    padding-right: 5% !important;
+    padding-left: 5% !important;
+    text-align: justify !important;
 }
 
+/* #endregion DICTIONARIES ===========================*/
+/* #region ABOUT THE PROJECT and CONTACT ===========================*/
 #aboutTheProject {
     padding: 1% 10%;
     text-align: justify;
@@ -107,22 +142,7 @@ a:hover {
     box-shadow: 0 0 5px 5px whitesmoke;
 }
 
-nav li:hover {
-    cursor: pointer;
-}
-
-#logo {
-    max-height: 8vh;
-    border-radius: 50%;
-}
-
-#home {
-    background-color: rgba(236, 237, 241, 1);
-    background-image: radial-gradient(circle, rgba(236, 237, 241, 1) 10%, rgba(201, 207, 230, 1) 90%);
-}
-
-#contact,
-#about {
+#contact, #about {
     text-align: center;
 }
 
@@ -143,24 +163,4 @@ nav li:hover {
     --bs-table-hover-bg: #ecf0f1;
 }
 
-/* #endregion MAIN ===========================*/
-
-/* #region DICTIONARIES ==============================*/
-#dict-description {
-    margin: auto;
-    max-width: 1000px;
-}
-
-#dict-img {
-    max-width: 120px;
-    padding: 10wv;
-}
-
-#dictionariesBody .col-md-10 {
-    padding-top: 1%;
-    padding-right: 5% !important;
-    padding-left: 5% !important;
-    text-align: justify !important;
-}
-
-/* #endregion DICTIONARIES ===========================*/
+/* #endregion ABOUT THE PROJECT and ABOUT ===========================*/
