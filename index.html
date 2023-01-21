@@ -53,9 +53,8 @@
       </div>
 
       <div class="row">
-        <div class="col-2">
           <div class="form-check">
-            <button id="toggleLogosButton" onclick="ToggleLogos()">toggle all</button>
+            <button type="button" id="toggleLogosButton" class="btn btn-primary" onclick="ToggleLogos()">(un)select all</button>
           </div>
           <section id="dictionaries">
             <button id="Meriam-Webster-button" class="dictionary_logo"><img src="./assets/img/Meriam-Webster-logo.png"
@@ -70,7 +69,6 @@
                 alt="Urban" width="90vh" onclick="deactivate('Urban')"></button>
           </section>
         </div>
-        <div class="col-10">
           <section id="search">
             <div id="results">
               <ul>
