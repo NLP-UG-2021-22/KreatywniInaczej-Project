@@ -1,22 +1,22 @@
 /* #region GLOBAL ============================= */
 
 body {
-    
-    min-height: 100vh; 
+
+    min-height: 100vh;
     margin: 0;
-    display: flex; 
+    display: flex;
     flex-direction: column;
 }
 
 article {
 
     text-align: center !important;
-    flex:1;
+    flex: 1;
 }
 
 footer {
-    min-height: 6.43vh; 
-    background:#F4F6F6;
+    min-height: 6.43vh;
+    background: #F4F6F6;
     text-align: center;
     padding-top: 0.6vw;
 }
@@ -24,7 +24,7 @@ footer {
 li {
     list-style-type: none;
     padding-top: 0.6vw;
-  }
+}
 
 
 .dark {
@@ -46,7 +46,7 @@ li {
     justify-content: space-between;
     padding-left: 5%;
     padding-bottom: 2.6vh;
-    text-align:center;
+    text-align: center;
     min-width: fit-content !important;
 
 }
@@ -121,7 +121,8 @@ nav li:hover {
     background-image: radial-gradient(circle, rgba(236, 237, 241, 1) 10%, rgba(201, 207, 230, 1) 90%);
 }
 
-#contact, #about {
+#contact,
+#about {
     text-align: center;
 }
 
@@ -131,14 +132,14 @@ nav li:hover {
 }
 
 .table-primary {
-    --bs-table-color: #000; 
+    --bs-table-color: #000;
     --bs-table-hover-color: #000;
 }
 
 .table-secondary {
-    --bs-table-bg: #d7dbdc; 
-    --bs-table-color: #000; 
-    --bs-table-hover-color: #000; 
+    --bs-table-bg: #d7dbdc;
+    --bs-table-color: #000;
+    --bs-table-hover-color: #000;
     --bs-table-hover-bg: #ecf0f1;
 }
 
@@ -152,6 +153,14 @@ nav li:hover {
 
 #dict-img {
     max-width: 120px;
-    padding: 10px;
+    padding: 10wv;
 }
+
+#dictionariesBody .col-md-10 {
+    padding-top: 1%;
+    padding-right: 5% !important;
+    padding-left: 5% !important;
+    text-align: justify !important;
+}
+
 /* #endregion DICTIONARIES ===========================*/
