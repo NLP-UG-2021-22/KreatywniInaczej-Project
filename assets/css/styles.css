@@ -163,4 +163,172 @@ nav li:hover {
     --bs-table-hover-bg: #ecf0f1;
 }
 
+=======
+/* #region GLOBAL ============================= */
+
+body {
+
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+article {
+
+    text-align: center !important;
+    flex: 1;
+}
+
+footer {
+    min-height: 6.43vh;
+    background: #F4F6F6;
+    text-align: center;
+    padding-top: 0.6vw;
+    margin-top: auto;
+}
+
+li {
+    list-style-type: none;
+    padding-top: 0.6vw;
+}
+
+
+.dark {
+    color: white;
+    background-color: black;
+}
+
+.underNav {
+    padding: 4%;
+}
+
+a {
+    color: #18bc9c;
+}
+
+a:hover {
+    color: #f39c12 !important;
+}
+
+nav li:hover {
+    cursor: pointer;
+}
+
+#logo {
+    max-height: 8vh;
+    border-radius: 50%;
+}
+
+#home {
+    background-color: rgba(236, 237, 241, 1);
+    background-image: radial-gradient(circle, rgba(236, 237, 241, 1) 10%, rgba(201, 207, 230, 1) 90%);
+}
+
+/* #endregion GLOBAL ========================== */
+/* #region MAIN ==============================*/
+
+#instruction {
+    padding: 10vh;
+}
+
+#dictionaries {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-left: 5%;
+    padding-bottom: 2.6vh;
+    text-align: center;
+    min-width: fit-content !important;
+
+}
+
+#toggleLogosButton {
+    margin-bottom: 2vw;
+    font-variant: small-caps;
+}
+
+#dictionaries button {
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.greyscale {
+    filter: grayscale(100%);
+}
+
+#results {
+    padding-right: 5vw;
+    text-align: justify;
+}
+
+#results h6 {
+    text-align: center;
+    padding-left: 2vw;
+}
+
+.hidden {
+    display: none;
+}
+
+/* #endregion MAIN ===========================*/
+/* #region DICTIONARIES ==============================*/
+#dict-description {
+    margin: auto;
+    max-width: 1000px;
+}
+
+#dict-img {
+    max-width: 120px;
+    padding: 10wv;
+}
+
+#dictionariesBody .col-md-10 {
+    padding-top: 1%;
+    padding-right: 5% !important;
+    padding-left: 5% !important;
+    text-align: justify !important;
+}
+
+/* #endregion DICTIONARIES ===========================*/
+/* #region ABOUT THE PROJECT and CONTACT ===========================*/
+#aboutTheProject {
+    padding: 1% 10%;
+    text-align: justify;
+}
+
+#bookDiv {
+    text-align: center;
+}
+
+#book {
+    width: 45%;
+    justify-content: center;
+    border-radius: 2%;
+    box-shadow: 0 0 5px 5px whitesmoke;
+}
+
+#contact, #about {
+    text-align: center;
+}
+
+.table {
+    width: 70%;
+    justify-content: center;
+}
+
+.table-primary {
+    --bs-table-color: #000;
+    --bs-table-hover-color: #000;
+}
+
+.table-secondary {
+    --bs-table-bg: #d7dbdc;
+    --bs-table-color: #000;
+    --bs-table-hover-color: #000;
+    --bs-table-hover-bg: #ecf0f1;
+}
+
 /* #endregion ABOUT THE PROJECT and ABOUT ===========================*/
