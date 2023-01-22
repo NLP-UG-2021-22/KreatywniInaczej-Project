@@ -1,7 +1,8 @@
 /* #region GLOBAL ============================= */
 
 body {
-
+    background-color: rgba(236, 237, 241, 1);
+    background-image: radial-gradient(circle, rgba(236, 237, 241, 1) 10%, rgba(201, 207, 230, 1) 90%);
     min-height: 100vh;
     margin: 0;
     display: flex;
@@ -20,6 +21,8 @@ footer {
     text-align: center;
     padding-top: 0.6vw;
     margin-top: auto;
+    background: rgba(44, 62, 80, 1);
+    color: white;
 }
 
 li {
@@ -52,12 +55,7 @@ nav li:hover {
 #logo {
     max-height: 8vh;
     border-radius: 50%;
-}
-
-#home {
-    background-color: rgba(236, 237, 241, 1);
-    background-image: radial-gradient(circle, rgba(236, 237, 241, 1) 10%, rgba(201, 207, 230, 1) 90%);
-}
+} 
 
 /* #endregion GLOBAL ========================== */
 /* #region MAIN ==============================*/
@@ -131,6 +129,7 @@ nav li:hover {
 #aboutTheProject {
     padding: 1% 10%;
     text-align: justify;
+    font-size: 6.9vw;
 }
 
 #bookDiv {
