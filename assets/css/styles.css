@@ -149,6 +149,8 @@ nav li:hover {
 .table {
     width: 70%;
     justify-content: center;
+    table-layout: fixed;
+    text-align: center;
 }
 
 .table-primary {
@@ -163,4 +165,8 @@ nav li:hover {
     --bs-table-hover-bg: #ecf0f1;
 }
 
-/* #endregion ABOUT THE PROJECT and ABOUT ===========================*/
+td {
+    word-wrap: break-word;
+}
+
+/* #endregion ABOUT THE PROJECT and CONTACT ===========================*/
