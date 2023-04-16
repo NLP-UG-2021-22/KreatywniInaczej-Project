@@ -109,7 +109,7 @@ nav li:hover {
     --bs-tooltip-bg: var(--bs-primary) !important;
     --bs-tooltip-opacity: 5 !important;
     --bs-tooltip-border-radius: 3% !important;
-    --bs-tooltip-color: whitesmoke;
+    --bs-tooltip-color: whitesmoke !important;
   }
 
 
