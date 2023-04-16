@@ -61,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 });
 
-localStorage.setItem('mode', 'light')
 function toggleDarkMode() {
     const elements = document.querySelectorAll('article, .underNav, thead th')
     for (let el of elements){el.classList.toggle('dark')}
