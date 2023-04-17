@@ -73,8 +73,6 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 });
 
-});
-
 function toggleDarkMode() {
     const elements = document.querySelectorAll('article, .underNav, thead th')
     for (let el of elements){el.classList.toggle('dark')}
