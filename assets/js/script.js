@@ -89,5 +89,5 @@ function toggleDarkMode() {
     const contactLight = document.querySelectorAll('tbody tr:nth-child(2)')
     for (let el of contactLight){el.classList.toggle('table-primary');
     el.classList.toggle('table-light')}
-
+}
 
