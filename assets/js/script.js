@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function(){
         return new bootstrap.Tooltip(element);
     });
 
+
     var inputField = document.querySelector('.form-control');
     inputField.addEventListener('input', function(){
         tooltipList.forEach(function(tooltip){
@@ -71,3 +72,22 @@ document.addEventListener("DOMContentLoaded", function(){
         });
     });
 });
+
+});
+
+function toggleDarkMode() {
+    const elements = document.querySelectorAll('article, .underNav, thead th')
+    for (let el of elements){el.classList.toggle('dark')}
+    
+    const dictionary = document.querySelectorAll('#dict-description')
+    for (let el of dictionary){el.classList.toggle('bg-primary')}
+    
+    const contactActive = document.querySelectorAll('tbody tr:first-child, tbody tr:nth-child(4)')
+    for (let el of contactActive){el.classList.toggle('table-primary');
+    el.classList.toggle('table-active')}
+    
+    const contactLight = document.querySelectorAll('tbody tr:nth-child(2)')
+    for (let el of contactLight){el.classList.toggle('table-primary');
+    el.classList.toggle('table-light')}
+
+
