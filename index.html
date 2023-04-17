@@ -49,7 +49,7 @@
             <input class="form-control me-sm-2" type="search" placeholder="e.g. word" style="width: 30%;" data-bs-toggle="tooltip" data-bs-placement="bottom" 
                 data-bs-custom-class="custom-tooltip" data-html="true"
                 title="Type in your word and click on the logos of the dictionaries you want to see the results from. If the logo is grey, the dictionary is not selected.">
-            <button class="btn btn-secondary my-2 my-sm-0" style="color: #2C3E50;" type="button"><i class="fa fa-search" aria-hidden="true" onclick="getResults()"></i></button>
+            <button id="resultsButton" class="btn btn-secondary my-2 my-sm-0" style="color: #2C3E50;" type="button"><i class="fa fa-search" aria-hidden="true" onclick="getResults()"></i></button>
           </form>
         </section>
       </div>
@@ -61,8 +61,6 @@
           <section id="dictionaries">
             <button id="Meriam-Webster-button" class="dictionary_logo"><img src="./assets/img/Meriam-Webster-logo.png"
                 alt="Meriam-Webster" width="90vh" onclick="deactivate('Meriam-Webster')"></button>
-            <button id="Oxford-button" class="dictionary_logo"><img src="./assets/img/Oxford-logo.png" alt="Oxford"
-                width="90vh" onclick="deactivate('Oxford')"></button>
             <button id="Collins-button" class="dictionary_logo"><img src="./assets/img/Collins-logo.png" alt="Collins"
                 width="100vh" onclick="deactivate('Collins')"></button>
             <button id="Wiktionary-button" class="dictionary_logo"><img src="./assets/img/Wiktionary-logo.png"
@@ -75,10 +73,6 @@
             <div id="results">
               <ul>
                 <li id="Meriam-Webster-output">
-                  <h6></h6>
-                  <p></p>
-                </li>
-                <li id="Oxford-output">
                   <h6></h6>
                   <p></p>
                 </li>

@@ -39,9 +39,6 @@ function getResults() {
     document.getElementById('Meriam-Webster-output').getElementsByTagName('h6')[0].innerHTML = 'Meriam-Webster';
     document.getElementById('Meriam-Webster-output').getElementsByTagName('p')[0].innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda consequatur, excepturi error ab provident aperiam magnam, sunt veritatis eligendi alias, quos libero! Facilis fugit, est dolore animi tenetur eveniet.';
     
-    document.getElementById('Oxford-output').getElementsByTagName('h6')[0].innerHTML = 'Oxford';
-    document.getElementById('Oxford-output').getElementsByTagName('p')[0].innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda consequatur, excepturi error ab provident aperiam magnam, sunt veritatis eligendi alias, quos libero! Facilis fugit, est dolore animi tenetur eveniet.';
-    
     document.getElementById('Collins-output').getElementsByTagName('h6')[0].innerHTML = 'Collins';
     document.getElementById('Collins-output').getElementsByTagName('p')[0].innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda consequatur, excepturi error ab provident aperiam magnam, sunt veritatis eligendi alias, quos libero! Facilis fugit, est dolore animi tenetur eveniet.';
     
@@ -54,11 +51,28 @@ function getResults() {
     document.getElementById('results').scrollIntoView()
 }
 
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        getResults();
+    }
+  });
+
 document.addEventListener("DOMContentLoaded", function(){
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     var tooltipList = tooltipTriggerList.map(function(element){
         return new bootstrap.Tooltip(element);
     });
+
+
+    var inputField = document.querySelector('.form-control');
+    inputField.addEventListener('input', function(){
+        tooltipList.forEach(function(tooltip){
+            tooltip.hide();
+        });
+    });
+});
+
 });
 
 function toggleDarkMode() {
@@ -75,4 +89,5 @@ function toggleDarkMode() {
     const contactLight = document.querySelectorAll('tbody tr:nth-child(2)')
     for (let el of contactLight){el.classList.toggle('table-primary');
     el.classList.toggle('table-light')}
-}
+
+
