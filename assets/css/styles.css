@@ -132,6 +132,17 @@ nav li:hover {
     text-align: justify !important;
 }
 
+.my-2 {
+    margin-top: 0 !important; 
+    margin-bottom: 0 !important;
+}
+
+@media only screen and (max-width: 600px)  {
+    .form-control {
+        min-width: 70% !important;
+    }
+}
+
 /* #endregion DICTIONARIES ===========================*/
 /* #region ABOUT THE PROJECT and CONTACT ===========================*/
 #aboutTheProject {
