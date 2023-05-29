@@ -13,7 +13,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"></script>
-  <script src="./js/script.js"></script>
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
@@ -46,7 +45,7 @@
             <h5>Select dictionaries and search for definitions or synonyms of your word.</h5>
           </div>
           <form class="d-flex" style="justify-content: center;">
-            <input class="form-control me-sm-2" type="search" placeholder="e.g. word" style="width: 30%;" data-bs-toggle="tooltip" data-bs-placement="bottom" 
+            <input id="inputWord" class="form-control me-sm-2" type="search" placeholder="e.g. word" style="width: 30%;" data-bs-toggle="tooltip" data-bs-placement="bottom" 
                 data-bs-custom-class="custom-tooltip" data-html="true"
                 title="Type in your word and click on the logos of the dictionaries you want to see the results from. If the logo is grey, the dictionary is not selected.">
             <button id="resultsButton" class="btn btn-secondary my-2 my-sm-0" style="color: #2C3E50;" type="button"><i class="fa fa-search" aria-hidden="true" onclick="getResults()"></i></button>
@@ -96,6 +95,7 @@
     </div>
   </article>
   <footer>&#169; Some rights reserved.</footer>
+  <script src="./js/script.js"></script>
 </body>
 
 </html>
