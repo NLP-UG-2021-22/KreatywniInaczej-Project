@@ -73,19 +73,41 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 });
 
-function toggleDarkMode() {
-    const elements = document.querySelectorAll('article, .underNav, thead th')
-    for (let el of elements){el.classList.toggle('dark')}
-    
-    const dictionary = document.querySelectorAll('#dict-description')
-    for (let el of dictionary){el.classList.toggle('bg-primary')}
-    
-    const contactActive = document.querySelectorAll('tbody tr:first-child, tbody tr:nth-child(4)')
-    for (let el of contactActive){el.classList.toggle('table-primary');
-    el.classList.toggle('table-active')}
-    
-    const contactLight = document.querySelectorAll('tbody tr:nth-child(2)')
-    for (let el of contactLight){el.classList.toggle('table-primary');
-    el.classList.toggle('table-light')}
+// adjusts darkmode when loading the page
+function adjustDarkModeToFlag() {
+    let darkModeFlag = localStorage.getItem('dark') === 'true';
+    let body = document.getElementsByTagName('body')[0];
+    if (body.classList.contains('dark') !== darkModeFlag) {
+        toggleDarkModeClasses();
+    }
 }
 
+function toggleDarkMode() {
+    let darkModeFlag = localStorage.getItem('dark') === 'true';
+    darkModeFlag = !darkModeFlag;
+    localStorage.setItem('dark', darkModeFlag);    
+    toggleDarkModeClasses();
+}
+
+function toggleDarkModeClasses() {
+    let body = document.getElementsByTagName('body')[0];
+    body.classList.toggle('dark');
+
+    const elements = document.querySelectorAll('article, .underNav, thead th');
+    for (let el of elements) { el.classList.toggle('dark'); }
+
+    const dictionary = document.querySelectorAll('#dict-description');
+    for (let el of dictionary) { el.classList.toggle('bg-primary'); }
+
+    const contactActive = document.querySelectorAll('tbody tr:first-child, tbody tr:nth-child(4)');
+    for (let el of contactActive) {
+        el.classList.toggle('table-primary');
+        el.classList.toggle('table-active');
+    }
+
+    const contactLight = document.querySelectorAll('tbody tr:nth-child(2)');
+    for (let el of contactLight) {
+        el.classList.toggle('table-primary');
+        el.classList.toggle('table-light');
+    }
+}
