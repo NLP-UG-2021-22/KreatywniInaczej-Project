@@ -25,6 +25,10 @@ footer {
     color: white;
 }
 
+.alert {
+    --bs-alert-margin-bottom: 0;
+}
+
 li {
     list-style-type: none;
     padding-top: 0.6vw;
