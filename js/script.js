@@ -1,3 +1,5 @@
+const inputWord = document.getElementById('inputWord');
+
 function deactivate(dictionary) {
     var dictionaryLogo = document.getElementById(dictionary.concat('-button'))
     dictionaryLogo.classList.toggle("greyscale")
@@ -45,8 +47,8 @@ function getResults() {
     document.getElementById('Wiktionary-output').getElementsByTagName('h6')[0].innerHTML = 'Wiktionary';
     document.getElementById('Wiktionary-output').getElementsByTagName('p')[0].innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda consequatur, excepturi error ab provident aperiam magnam, sunt veritatis eligendi alias, quos libero! Facilis fugit, est dolore animi tenetur eveniet.';
     
-    document.getElementById('Urban-output').getElementsByTagName('h6')[0].innerHTML = 'Urban';
-    document.getElementById('Urban-output').getElementsByTagName('p')[0].innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda consequatur, excepturi error ab provident aperiam magnam, sunt veritatis eligendi alias, quos libero! Facilis fugit, est dolore animi tenetur eveniet.';
+    document.getElementById('Urban-output').getElementsByTagName('p')[0].innerHTML = "";
+    getResultsFromUrban();
 
     document.getElementById('results').scrollIntoView()
 }
@@ -110,4 +112,31 @@ function toggleDarkModeClasses() {
         el.classList.toggle('table-primary');
         el.classList.toggle('table-light');
     }
+
+function getResultsFromUrban() {
+    let wordVal = inputWord.value;
+    let url = 'https://mashape-community-urban-dictionary.p.rapidapi.com/define?term=' + wordVal.trim().toLowerCase();
+    console.log(url);
+    const options = {
+        method: 'GET',
+        headers: {
+            //jak ten klucz przestanie dzialac to trzeba sie zalogowac czy cos
+            'X-RapidAPI-Key': 'e2366fd9d1mshc2654b507d6bbc9p1e926djsncfb3238af786',
+            'X-RapidAPI-Host': 'mashape-community-urban-dictionary.p.rapidapi.com'
+        }
+    };
+    fetch(url, options)
+    .then(response => response.json())
+    .then(response => {
+        const definitions = response.list.map(x => x.definition);
+        document.getElementById('Urban-output').getElementsByTagName('h6')[0].innerHTML = 'Urban';
+        const urbanList = document.createElement('ol');
+        definitions.forEach(el => {
+            let li = document.createElement('li');
+            li.innerHTML = el;
+            urbanList.appendChild(li);
+        });
+        document.getElementById('Urban-output').getElementsByTagName('p')[0].appendChild(urbanList);
+    })
+    
 }
