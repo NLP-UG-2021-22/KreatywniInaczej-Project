@@ -111,7 +111,7 @@ function toggleDarkModeClasses() {
     for (let el of contactLight) {
         el.classList.toggle('table-primary');
         el.classList.toggle('table-light');
-    }
+    }}
 
 function getResultsFromUrban() {
     let wordVal = inputWord.value;
