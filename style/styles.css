@@ -61,6 +61,24 @@ nav li:hover {
     border-radius: 50%;
 } 
 
+.darkmode_button.toDark {
+    background:rgba(12, 16, 34, 1);
+    border-radius: 10%;
+}
+
+.darkmode_button.toLight {
+    background: rgba(237, 238, 242, 1);
+    border-radius: 10%;
+}
+
+.fa-moon.lightmode {
+    color: rgba(237, 238, 242, 1);
+}
+
+.fa-moon.darkmode {
+    color: rgba(12, 16, 34, 1);
+}
+
 /* #endregion GLOBAL ========================== */
 /* #region MAIN ==============================*/
 
