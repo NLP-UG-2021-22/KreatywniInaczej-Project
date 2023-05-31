@@ -111,7 +111,26 @@ function toggleDarkModeClasses() {
     for (let el of contactLight) {
         el.classList.toggle('table-primary');
         el.classList.toggle('table-light');
-    }}
+    }
+
+    const cardBorder = document.getElementsByClassName('card');
+    for (let el of cardBorder) {
+        el.classList.toggle('border-primary');
+        el.classList.toggle('border-warning');
+    }
+
+    const darkmodeButton = document.getElementsByClassName('darkmode_button');
+    for (let el of darkmodeButton) {
+        el.classList.toggle('toDark');
+        el.classList.toggle('toLight');
+    }
+
+    const moon = document.getElementsByClassName('fa-moon');
+    for (let el of moon) {
+        el.classList.toggle('lightmode');
+        el.classList.toggle('darkmode');
+    }
+}
 
 function getResultsFromUrban() {
     let wordVal = inputWord.value;
