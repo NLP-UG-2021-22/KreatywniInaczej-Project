@@ -41,11 +41,11 @@ function getResults() {
     document.getElementById('Meriam-Webster-output').getElementsByTagName('h6')[0].innerHTML = 'Meriam-Webster';
     document.getElementById('Meriam-Webster-output').getElementsByTagName('p')[0].innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda consequatur, excepturi error ab provident aperiam magnam, sunt veritatis eligendi alias, quos libero! Facilis fugit, est dolore animi tenetur eveniet.';
     
-    document.getElementById('Collins-output').getElementsByTagName('h6')[0].innerHTML = 'Collins';
-    document.getElementById('Collins-output').getElementsByTagName('p')[0].innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda consequatur, excepturi error ab provident aperiam magnam, sunt veritatis eligendi alias, quos libero! Facilis fugit, est dolore animi tenetur eveniet.';
+    // document.getElementById('Collins-output').getElementsByTagName('h6')[0].innerHTML = 'Collins';
+    // document.getElementById('Collins-output').getElementsByTagName('p')[0].innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda consequatur, excepturi error ab provident aperiam magnam, sunt veritatis eligendi alias, quos libero! Facilis fugit, est dolore animi tenetur eveniet.';
     
     document.getElementById('Wiktionary-output').getElementsByTagName('h6')[0].innerHTML = 'Wiktionary';
-    document.getElementById('Wiktionary-output').getElementsByTagName('p')[0].innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda consequatur, excepturi error ab provident aperiam magnam, sunt veritatis eligendi alias, quos libero! Facilis fugit, est dolore animi tenetur eveniet.';
+    getResultsFromWiktionary()
     
     document.getElementById('Urban-output').getElementsByTagName('p')[0].innerHTML = "";
     getResultsFromUrban();
@@ -159,3 +159,45 @@ function getResultsFromUrban() {
     })
     
 }
+
+function getResultsFromWiktionary() {
+    let wordVal = inputWord.value;
+    const url = 'https://en.wiktionary.org/w/api.php?origin=*&action=query&format=json&prop=extracts&exsectionformat=plain&titles=' + wordVal.trim().toLowerCase();
+
+    fetch(url)
+    .then(response => response.json())
+    .then(response => {
+        response = JSON.stringify(response);
+
+        //Find all headers
+        text = response.replaceAll('<h2>','QQQ<h2>').split('QQQ');
+
+        //Find English
+        text.forEach(function (section) {
+            if (section.includes('<span id=\\\"English\\\">')) {
+                text = section
+            }
+        });
+
+        //Clean data
+        text = text.replaceAll('\\n', '').replaceAll('<span id=', 'QQQ<span id=').split('QQQ')
+
+        //Find different meanings
+        let text_pos = []
+        text.forEach(section => {
+            if (section.includes('\"Noun') ||
+            section.includes('\"Verb') ||
+            section.includes('\"Adjective') ||
+            section.includes('\"Adverb') ||
+            section.includes('\"Pronoun') ||
+            section.includes('\"Preposition') ||
+            section.includes('\"Article') ||
+            section.includes('\"Interjection') ||
+            section.includes('\"Conjunction')) {
+                section = section.replaceAll(/<\/?h3>|<\/?h4>|<\/?h5>/g, '')
+                text_pos.push(section)
+                }
+            })
+        document.getElementById('Wiktionary-output').getElementsByTagName('p')[0].innerHTML = text_pos.join('');
+        })
+    };
