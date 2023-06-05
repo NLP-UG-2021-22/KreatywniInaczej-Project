@@ -120,7 +120,14 @@ nav li:hover {
 
 #results h6 {
     text-align: center;
-    padding-left: 2vw;
+    padding: 2vw;
+    font-size: 1.3rem;
+    color: darkorange;
+    letter-spacing: 0.6vw;
+}
+
+h1 {
+    letter-spacing: 0.1vw;
 }
 
 .hidden {
