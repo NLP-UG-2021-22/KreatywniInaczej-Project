@@ -150,14 +150,17 @@ function getResultsFromUrban() {
         const definitions = response.list.map(x => x.definition);
         document.getElementById('Urban-output').getElementsByTagName('h6')[0].innerHTML = 'Urban';
         const urbanList = document.createElement('ol');
-        definitions.forEach(el => {
-            let li = document.createElement('li');
-            li.innerHTML = el.replaceAll('[','').replaceAll(']','');
-            urbanList.appendChild(li);
-        });
-        document.getElementById('Urban-output').getElementsByTagName('p')[0].appendChild(urbanList);
-    })
-    
+        if (definitions.length === 0) {
+            document.getElementById('Urban-output').getElementsByTagName('p')[0].textContent += "The word you're looking for is not in this dictionary."; 
+        } else {
+            definitions.forEach(el => {
+                let li = document.createElement('li');
+                li.innerHTML = el.replaceAll('[','').replaceAll(']','');
+                urbanList.appendChild(li);
+            });
+            document.getElementById('Urban-output').getElementsByTagName('p')[0].appendChild(urbanList);
+        }  
+    })   
 }
 
 function getResultsFromWiktionary() {
@@ -167,20 +170,32 @@ function getResultsFromWiktionary() {
     fetch(url)
     .then(response => response.json())
     .then(response => {
-        response = JSON.stringify(response);
+        // accessing first value of response.query.pages and then word definition is in extract attribute
+        response = response.query.pages[Object.keys(response.query.pages)[0]].extract;
+        if (!response) {
+            setEmptyAlertInWiktionary();
+            return;
+        }
 
         //Find all headers
         text = response.replaceAll('<h2>','QQQ<h2>').split('QQQ');
 
         //Find English
-        text.forEach(function (section) {
-            if (section.includes('<span id=\\\"English\\\">')) {
-                text = section
+        let english_text;
+        text.forEach((x) => {
+            if (x.includes('<span id="English">')) {
+                english_text = x;
             }
         });
 
+        if(!english_text) {
+            setEmptyAlertInWiktionary();
+            return;
+        }
+        text = english_text;
+
         //Clean data
-        text = text.replaceAll('\\n', '').replaceAll('<span id=', 'QQQ<span id=').split('QQQ')
+        text = text.replaceAll('\\n', '').replaceAll('<span id=', 'QQQ<span id=').split('QQQ');
 
         //Find different meanings
         let text_pos = []
@@ -194,10 +209,15 @@ function getResultsFromWiktionary() {
             section.includes('\"Article') ||
             section.includes('\"Interjection') ||
             section.includes('\"Conjunction')) {
-                section = section.replaceAll(/<\/?h3>|<\/?h4>|<\/?h5>/g, '')
-                text_pos.push(section)
+                section = section.replaceAll(/<\/?h3>|<\/?h4>|<\/?h5>/g, '');
+                text_pos.push(section);
                 }
-            })
-        document.getElementById('Wiktionary-output').getElementsByTagName('p')[0].innerHTML = text_pos.join('');
-        })
+            });
+
+            document.getElementById('Wiktionary-output').getElementsByTagName('p')[0].innerHTML = text_pos.join('');
+        });
     };
+
+function setEmptyAlertInWiktionary() {
+    document.getElementById('Wiktionary-output').getElementsByTagName('p')[0].textContent += "The word you're looking for is not in this dictionary.";
+}
