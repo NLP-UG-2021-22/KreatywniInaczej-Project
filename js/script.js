@@ -152,7 +152,7 @@ function getResultsFromUrban() {
         const urbanList = document.createElement('ol');
         definitions.forEach(el => {
             let li = document.createElement('li');
-            li.innerHTML = el;
+            li.innerHTML = el.replaceAll('[','').replaceAll(']','');
             urbanList.appendChild(li);
         });
         document.getElementById('Urban-output').getElementsByTagName('p')[0].appendChild(urbanList);
