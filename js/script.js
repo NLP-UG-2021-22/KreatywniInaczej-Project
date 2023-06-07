@@ -37,20 +37,16 @@ function ToggleLogos() {
 
 function getResults() {
 
-    // MW = document.getElementById('Meriam-Webster-output');
     document.getElementById('Meriam-Webster-output').getElementsByTagName('h6')[0].innerHTML = 'Meriam-Webster';
-    document.getElementById('Meriam-Webster-output').getElementsByTagName('p')[0].innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda consequatur, excepturi error ab provident aperiam magnam, sunt veritatis eligendi alias, quos libero! Facilis fugit, est dolore animi tenetur eveniet.';
-    
-    // document.getElementById('Collins-output').getElementsByTagName('h6')[0].innerHTML = 'Collins';
-    // document.getElementById('Collins-output').getElementsByTagName('p')[0].innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda consequatur, excepturi error ab provident aperiam magnam, sunt veritatis eligendi alias, quos libero! Facilis fugit, est dolore animi tenetur eveniet.';
-    
+    getResultsFromMeriamWebster();
+
     document.getElementById('Wiktionary-output').getElementsByTagName('h6')[0].innerHTML = 'Wiktionary';
-    getResultsFromWiktionary()
-    
+    getResultsFromWiktionary();
+
     document.getElementById('Urban-output').getElementsByTagName('p')[0].innerHTML = "";
     getResultsFromUrban();
 
-    document.getElementById('results').scrollIntoView()
+    // document.getElementById('results').scrollIntoView()
 }
 
 document.addEventListener('keydown', (event) => {
@@ -58,18 +54,18 @@ document.addEventListener('keydown', (event) => {
         event.preventDefault();
         getResults();
     }
-  });
+});
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    var tooltipList = tooltipTriggerList.map(function(element){
+    var tooltipList = tooltipTriggerList.map(function (element) {
         return new bootstrap.Tooltip(element);
     });
 
 
     var inputField = document.querySelector('.form-control');
-    inputField.addEventListener('input', function(){
-        tooltipList.forEach(function(tooltip){
+    inputField.addEventListener('input', function () {
+        tooltipList.forEach(function (tooltip) {
             tooltip.hide();
         });
     });
@@ -87,7 +83,7 @@ function adjustDarkModeToFlag() {
 function toggleDarkMode() {
     let darkModeFlag = localStorage.getItem('dark') === 'true';
     darkModeFlag = !darkModeFlag;
-    localStorage.setItem('dark', darkModeFlag);    
+    localStorage.setItem('dark', darkModeFlag);
     toggleDarkModeClasses();
 }
 
@@ -132,6 +128,102 @@ function toggleDarkModeClasses() {
     }
 }
 
+function getResultsFromMeriamWebster() {
+
+    document.getElementById('Meriam-Webster-output').getElementsByTagName('p')[0].innerHTML = "";
+
+    let wordVal = inputWord.value;
+    let url = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${wordVal}?key=d49265f5-c895-4871-bcb3-e38010cfdb7f`
+
+
+    let MW_results = ''
+
+    fetch(url)
+    .then(response => response.json())
+    .then(response => {
+        // console.log(response)
+        for (let i1 = 0; i1 < response.length; i1++) {
+            // && response[i1].id.includes(word)
+            if (response[i1].hwi.hw) {
+                // console.log(response[i1].hwi.hw.replace(/\*/g,''))    //logs lexeme
+                MW_results += '<br>'
+                MW_results += '<b><span style="color:#76B900; font-weight: bolder; font-size:larger">' + response[i1].hwi.hw.replace(/\*/g, '') + '</span>' + ' '
+            }
+            if (response[i1].hom) {
+                // console.log(response[i1].hom)   //logs Entry No.
+                MW_results += '<b><span style="font-weight: bolder; font-size: smaller">' + response[i1].hom + '</span>' + ' '
+            }
+            if (response[i1].fl) {
+                // console.log(response[i1].fl)    //logs POS
+                MW_results += '<i><span style="color:#808080; font-size:larger">' + response[i1].fl + '</span></i>' + '<br>'
+            }
+            if (response[i1].ins) {
+                for (const item1 of response[i1].ins) {
+                    if (item1.il) {
+                        // console.log(item1.il);  // "plural"
+                        MW_results += '<span style="color:darkorange; font-size: smaller">' + item1.il + '</span>' + ' '
+                    }
+                    if (item1.if) {
+                        // console.log(item1.if);   //verb forms, plural form
+                        MW_results += '<span style=font-size:smaller>' + item1.if.replace(/\*/g, '') + '</span>' + '<br>'
+                    }
+                }
+            }
+            if (response[i1].def) {
+                for (const item2 of response[i1].def) {
+                    if (item2.vd) {
+                        // console.log(item2.vd); //transitivity
+                        MW_results += '<br>' + '<span style=color:#808080>' + item2.vd + '</span>' + '<br>'
+                    }
+                    if (item2.sls) {
+                        // console.log(item2.sls[0]);  // logs sls, e.g.: archaic / chiefly British
+                        MW_results += '<br>' + '<span style=color:#808080>' + item2.sls + '</span>' +'<br>'
+                    }
+                    if (item2.sseq) {
+                        for (let i_sense = 0; i_sense < response[i1].def[0].sseq.length; i_sense++) {
+                            // console.log(response[i1].def[0].sseq[i_sense]);
+                            for (const sense_item of response[i1].def[0].sseq[i_sense]) {
+                                let definition_str = JSON.stringify(sense_item);
+                                // console.log(definition_str)
+                                const defRe = /("sn":"[\(\d\w\s\)]+)(?:",)(?:"sls":\[")(.*?)(?:"\]\})|("sn":"[\(\d\w\s\)]+)(?:",)(?:"sls":\[")(.*?)(?:"\],"dt")(?:.*{bc})(.*?)(?:"\])|("sn":"[\(\d\w\s\)]+)(?:","dt":.*?{bc})(.*?)(?:"\])|(?:\{"dt":.*?{bc})(.*?)(?:"\])/g;
+                                let defMatch;
+                                while ((defMatch = defRe.exec(definition_str))) {
+                                    // console.log(defMatch)
+                                    if (defMatch && defMatch.length > 0) {
+                                        for (let i = 1; i < defMatch.length; i++) {
+                                            let definition = defMatch[i];
+                                            // console.log(definition);
+                                            const cleanDefRe = /sx\||\{dx_def\}|dxt\||\{\/dx_def\}|\{dx\}|\{\/dx\}|d_link\||a_link\||i_link\||et_link\|/g;
+                                            const spaceDefRe = /\|\|/g;
+                                            const breakDefRe = /\{bc\}/g;
+                                            const italicsLDefRe = /\{it\}/g
+                                            const italicsRDefRe = /\{\/it\}/g
+                                            const stylisedSn = /"sn":"([\(\d\w\s\)]+)/g
+                                            if (definition) {
+                                                let cleanedDefinition = definition.replace(cleanDefRe, '').replace(spaceDefRe, '').replace(breakDefRe, '\n').replace(italicsLDefRe, '<it>').replace(italicsRDefRe, '</it>').replace(stylisedSn, '<span style="position: relative; left: -20px; color:darkorange">$1</span>');
+                                                // console.log(definition.replace(cleanDefRe,'').replace(spaceDefRe,'').replace(breakDefRe,'\n').replace(italicsLDefRe,'<it>').replace(italicsRDefRe,'</it>'));
+                                                MW_results += '<span style="padding-left: 20px; font-size: smaller">' + cleanedDefinition + '</span>' + '<br>'
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (MW_results.length === 0) {
+                document.getElementById('Meriam-Webster-output').getElementsByTagName('p')[0].textContent += "The word you're looking for is not in this dictionary.";
+            } else {
+                // console.log(MW_results)
+                document.getElementById('Meriam-Webster-output').getElementsByTagName('p')[0].innerHTML = MW_results;
+            }
+
+            document.getElementById('results').scrollIntoView()
+        }
+    })
+};
+
 function getResultsFromUrban() {
     let wordVal = inputWord.value;
     let url = 'https://mashape-community-urban-dictionary.p.rapidapi.com/define?term=' + wordVal.trim().toLowerCase();
@@ -145,78 +237,78 @@ function getResultsFromUrban() {
         }
     };
     fetch(url, options)
-    .then(response => response.json())
-    .then(response => {
-        const definitions = response.list.map(x => x.definition);
-        document.getElementById('Urban-output').getElementsByTagName('h6')[0].innerHTML = 'Urban';
-        const urbanList = document.createElement('ol');
-        if (definitions.length === 0) {
-            document.getElementById('Urban-output').getElementsByTagName('p')[0].textContent += "The word you're looking for is not in this dictionary."; 
-        } else {
-            definitions.forEach(el => {
-                let li = document.createElement('li');
-                li.innerHTML = el.replaceAll('[','').replaceAll(']','');
-                urbanList.appendChild(li);
-            });
-            document.getElementById('Urban-output').getElementsByTagName('p')[0].appendChild(urbanList);
-        }  
-    })   
-}
+        .then(response => response.json())
+        .then(response => {
+            const definitions = response.list.map(x => x.definition);
+            document.getElementById('Urban-output').getElementsByTagName('h6')[0].innerHTML = 'Urban';
+            const urbanList = document.createElement('ol');
+            if (definitions.length === 0) {
+                document.getElementById('Urban-output').getElementsByTagName('p')[0].textContent += "The word you're looking for is not in this dictionary.";
+            } else {
+                definitions.forEach(el => {
+                    let li = document.createElement('li');
+                    li.innerHTML = el.replaceAll('[', '').replaceAll(']', '');
+                    urbanList.appendChild(li);
+                });
+                document.getElementById('Urban-output').getElementsByTagName('p')[0].appendChild(urbanList);
+            }
+        })
+};
 
 function getResultsFromWiktionary() {
     let wordVal = inputWord.value;
     const url = 'https://en.wiktionary.org/w/api.php?origin=*&action=query&format=json&prop=extracts&exsectionformat=plain&titles=' + wordVal.trim().toLowerCase();
 
     fetch(url)
-    .then(response => response.json())
-    .then(response => {
-        // accessing first value of response.query.pages and then word definition is in extract attribute
-        response = response.query.pages[Object.keys(response.query.pages)[0]].extract;
-        if (!response) {
-            setEmptyAlertInWiktionary();
-            return;
-        }
-
-        //Find all headers
-        text = response.replaceAll('<h2>','QQQ<h2>').split('QQQ');
-
-        //Find English
-        let english_text;
-        text.forEach((x) => {
-            if (x.includes('<span id="English">')) {
-                english_text = x;
+        .then(response => response.json())
+        .then(response => {
+            // accessing first value of response.query.pages and then word definition is in extract attribute
+            response = response.query.pages[Object.keys(response.query.pages)[0]].extract;
+            if (!response) {
+                setEmptyAlertInWiktionary();
+                return;
             }
-        });
 
-        if(!english_text) {
-            setEmptyAlertInWiktionary();
-            return;
-        }
-        text = english_text;
+            //Find all headers
+            text = response.replaceAll('<h2>', 'QQQ<h2>').split('QQQ');
 
-        //Clean data
-        text = text.replaceAll('\\n', '').replaceAll('<span id=', 'QQQ<span id=').split('QQQ');
+            //Find English
+            let english_text;
+            text.forEach((x) => {
+                if (x.includes('<span id="English">')) {
+                    english_text = x;
+                }
+            });
 
-        //Find different meanings
-        let text_pos = []
-        text.forEach(section => {
-            if (section.includes('\"Noun') ||
-            section.includes('\"Verb') ||
-            section.includes('\"Adjective') ||
-            section.includes('\"Adverb') ||
-            section.includes('\"Pronoun') ||
-            section.includes('\"Preposition') ||
-            section.includes('\"Article') ||
-            section.includes('\"Interjection') ||
-            section.includes('\"Conjunction')) {
-                section = section.replaceAll(/<\/?h3>|<\/?h4>|<\/?h5>/g, '');
-                text_pos.push(section);
+            if (!english_text) {
+                setEmptyAlertInWiktionary();
+                return;
+            }
+            text = english_text;
+
+            //Clean data
+            text = text.replaceAll('\\n', '').replaceAll('<span id=', 'QQQ<span id=').split('QQQ');
+
+            //Find different meanings
+            let text_pos = []
+            text.forEach(section => {
+                if (section.includes('\"Noun') ||
+                    section.includes('\"Verb') ||
+                    section.includes('\"Adjective') ||
+                    section.includes('\"Adverb') ||
+                    section.includes('\"Pronoun') ||
+                    section.includes('\"Preposition') ||
+                    section.includes('\"Article') ||
+                    section.includes('\"Interjection') ||
+                    section.includes('\"Conjunction')) {
+                    section = section.replaceAll(/<\/?h3>|<\/?h4>|<\/?h5>/g, '');
+                    text_pos.push(section);
                 }
             });
 
             document.getElementById('Wiktionary-output').getElementsByTagName('p')[0].innerHTML = text_pos.join('');
         });
-    };
+};
 
 function setEmptyAlertInWiktionary() {
     document.getElementById('Wiktionary-output').getElementsByTagName('p')[0].textContent += "The word you're looking for is not in this dictionary.";
