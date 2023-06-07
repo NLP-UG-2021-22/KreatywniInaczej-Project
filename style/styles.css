@@ -118,7 +118,27 @@ nav li:hover {
     text-align: justify;
 }
 
+#results_ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#Meriam-Webster-output,
+#Wiktionary-output,
+#Urban-output{
+    max-width: 33% ;
+    align-items: center;
+}
+
+#Wiktionary-output{
+    margin-left: 4vh;
+    margin-right: 4vh;
+}
+
 #results h6 {
+
     text-align: center;
     padding: 2vw;
     font-size: 1.3rem;
@@ -218,3 +238,43 @@ td {
 }
 
 /* #endregion ABOUT THE PROJECT and CONTACT ===========================*/
+/* #region MEDIA  ===========================*/
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+/* @media screen and (max-width: 1200px) {
+
+    body {
+        font-size: 1.2em;
+    }
+
+} */
+
+@media screen and (max-width: 768px) {
+    #results_ul {
+        flex-direction: column;
+    }
+
+    #Meriam-Webster-output,
+    #Wiktionary-output,
+    #Urban-output{
+        max-width: 100% ;
+    }
+
+    /* body {
+        font-size: 1.2em;
+    } */
+}
+
+/* @media screen and (max-width: 480px) {
+
+    body {
+        font-size: 1em;
+    }
+} */
+
+/* #endregion MEDIA */
