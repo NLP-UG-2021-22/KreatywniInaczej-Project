@@ -71,6 +71,23 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+
+// back to top button:
+var toTopBtn = $('#backToTopButton');
+
+$(window).scroll(function() {
+  if ($(window).scrollTop() > 300) {
+    toTopBtn.addClass('showBackToTopButton');
+  } else {
+    toTopBtn.removeClass('showBackToTopButton');
+  }
+});
+
+toTopBtn.on('click', function(e) {
+  e.preventDefault();
+  $('html, body').animate({scrollTop:0}, '300');
+});
+
 // adjusts darkmode when loading the page
 function adjustDarkModeToFlag() {
     let darkModeFlag = localStorage.getItem('dark') === 'true';
@@ -134,77 +151,90 @@ function getResultsFromMeriamWebster() {
 
     let wordVal = inputWord.value;
     let url = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${wordVal}?key=d49265f5-c895-4871-bcb3-e38010cfdb7f`
-    // https://www.dictionaryapi.com/api/v3/references/collegiate/json/bear?key=d49265f5-c895-4871-bcb3-e38010cfdb7f
 
     let MW_results = ''
 
     fetch(url)
     .then(response => response.json())
     .then(response => {
-        // console.log(response)
-        for (let i1 = 0; i1 < response.length; i1++) {
-            // && response[i1].id.includes(word)
-            if (response[i1].hwi.hw) {
-                // console.log(response[i1].hwi.hw.replace(/\*/g,''))    //logs lexeme
-                MW_results += '<br>'
-                MW_results += '<b><span style="color:#76B900; font-weight: bolder; font-size:larger">' + response[i1].hwi.hw.replace(/\*/g, '') + '</span>' + ' '
+        console.log(response)
+        if (Array.isArray(response) && typeof response[0] === 'string') {
+
+            document.getElementById('Meriam-Webster-output').getElementsByTagName('p')[0].innerHTML += '<span style="color:#808080; font-weight: bolder; font-size:smaller">' + "Did you mean:<br>";
+            for (let i0 = 0; i0 < response.length; i0++) {
+                document.getElementById('Meriam-Webster-output').getElementsByTagName('p')[0].innerHTML += '<i><span style="color:#76B900; font-weight: bolder">' + response[i0] + '</span></i><br>';
+                document.getElementById('results').scrollIntoView()
             }
-            if (response[i1].hom) {
-                // console.log(response[i1].hom)   //logs Entry No.
-                MW_results += '<b><span style="font-weight: bolder; font-size: smaller">' + response[i1].hom + '</span>' + ' '
-            }
-            if (response[i1].fl) {
-                // console.log(response[i1].fl)    //logs POS
-                MW_results += '<i><span style="color:#808080; font-size:larger">' + response[i1].fl + '</span></i>' + '<br>'
-            }
-            if (response[i1].ins) {
-                for (const item1 of response[i1].ins) {
-                    if (item1.il) {
-                        // console.log(item1.il);  // "plural"
-                        MW_results += '<span style="color:darkorange; font-size: smaller">' + item1.il + '</span>' + ' '
-                    }
-                    if (item1.if) {
-                        // console.log(item1.if);   //verb forms, plural form
-                        MW_results += '<span style=font-size:smaller>' + item1.if.replace(/\*/g, '') + '</span>' + '<br>'
+        } 
+        else if (Array.isArray(response) && response.length === 0) {
+
+            document.getElementById('Meriam-Webster-output').getElementsByTagName('p')[0].innerHTML += "The word you're looking for is not in this dictionary."
+        } 
+        else {
+            for (let i1 = 0; i1 < response.length; i1++) {
+                // && response[i1].id.includes(word)
+                if (response[i1].hwi.hw) {
+                    // console.log(response[i1].hwi.hw.replace(/\*/g,''))    //logs lexeme
+                    MW_results += '<br>'
+                    MW_results += '<b><span style="color:#76B900; font-weight: bolder; font-size:larger">' + response[i1].hwi.hw.replace(/\*/g, '') + '</span>' + ' '
+                }
+                if (response[i1].hom) {
+                    // console.log(response[i1].hom)   //logs Entry No.
+                    MW_results += '<b><span style="font-weight: bolder; font-size: smaller">' + response[i1].hom + '</span>' + ' '
+                }
+                if (response[i1].fl) {
+                    // console.log(response[i1].fl)    //logs POS
+                    MW_results += '<i><span style="color:#808080; font-size:larger">' + response[i1].fl + '</span></i>' + '<br>'
+                }
+                if (response[i1].ins) {
+                    for (const item1 of response[i1].ins) {
+                        if (item1.il) {
+                            // console.log(item1.il);  // "plural"
+                            MW_results += '<span style="color:darkorange; font-size: smaller">' + item1.il + '</span>' + ' '
+                        }
+                        if (item1.if) {
+                            // console.log(item1.if);   //verb forms, plural form
+                            MW_results += '<span style=font-size:smaller>' + item1.if.replace(/\*/g, '') + '</span>' + '<br>'
+                        }
                     }
                 }
-            }
-            if (response[i1].def) {
-                for (const item2 of response[i1].def) {
-                    if (item2.vd) {
-                        // console.log(item2.vd); //transitivity
-                        MW_results += '<br>' + '<span style=color:#808080>' + item2.vd + '</span>' + '<br>'
-                    }
-                    if (item2.sls) {
-                        // console.log(item2.sls[0]);  // logs sls, e.g.: archaic / chiefly British
-                        MW_results += '<br>' + '<span style=color:#808080>' + item2.sls + '</span>' +'<br>'
-                    }
-                    if (item2.sseq) {
-                        for (let i_sense = 0; i_sense < response[i1].def[0].sseq.length; i_sense++) {
-                            // console.log(response[i1].def[0].sseq[i_sense]);
-                            for (const sense_item of response[i1].def[0].sseq[i_sense]) {
-                                let definition_str = JSON.stringify(sense_item);
-                                // console.log(definition_str)
-                                const defRe = /("sn":"[\(\d\w\s\)]+)(?:",)(?:"sls":\[")(.*?)(?:"\]\})|("sn":"[\(\d\w\s\)]+)(?:",)(?:"sls":\[")(.*?)(?:"\],"dt")(?:.*{bc})(.*?)(?:"\])|("sn":"[\(\d\w\s\)]+)(?:","dt":.*?{bc})(.*?)(?:"\])|("sn":"[\(\d\w\s\)]+)(?:.*?)(?:"dt":.*?"{bc})(.*?)(?:"\])/g;
-                                let defMatch;
-                                while ((defMatch = defRe.exec(definition_str))) {
-                                    // console.log(defMatch)
-                                    if (defMatch && defMatch.length > 0) {
-                                        for (let i = 1; i < defMatch.length; i++) {
-                                            let definition = defMatch[i];
-                                            // console.log(definition);
-                                            const cleanDefRe = /sx\||\{dx_def\}|dxt\||\{\/dx_def\}|\{dx\}|\{\/dx\}|d_link\||a_link\||i_link\||et_link\|/g;
-                                            const spaceDefRe = /\|\|/g;
-                                            const breakDefRe = /\{bc\}/g;
-                                            const italicsLDefRe = /\{it\}/g
-                                            const italicsRDefRe = /\{\/it\}/g
-                                            const stylisedSn = /"sn":"([\(\d\w\s\)]+)/g
-                                            // const styleGreenReference  = /\{([\w\n\s]+)\}|\{([\w\n\s]+)|([\w\n\s]+)\}/g
-                                            const styleGreenReference  = /\{([\w\n\s]+)\}|\{([\w\n\s]+)\|([\w\n\s]+)\}/g
-                                            if (definition) {
-                                                let cleanedDefinition = definition.replace(cleanDefRe, '').replace(spaceDefRe, ' ').replace(breakDefRe, '\n').replace(italicsLDefRe, '<it>').replace(italicsRDefRe, '</it>').replace(stylisedSn, '<span style="position: relative; left: -26px; top:24px;color:darkorange">$1</span>').replace(styleGreenReference, '<span style="color:#76B900">$1</span>');
-                                                // console.log(cleanedDefinition)
-                                                MW_results += '<span style="padding-left: 20px; font-size: smaller">' + cleanedDefinition + '</span>' + '<br>'
+                if (response[i1].def) {
+                    for (const item2 of response[i1].def) {
+                        if (item2.vd) {
+                            // console.log(item2.vd); //transitivity
+                            MW_results += '<br>' + '<span style=color:#808080>' + item2.vd + '</span>' + '<br>'
+                        }
+                        if (item2.sls) {
+                            // console.log(item2.sls[0]);  // logs sls, e.g.: archaic / chiefly British
+                            MW_results += '<br>' + '<span style=color:#808080>' + item2.sls + '</span>' +'<br>'
+                        }
+                        if (item2.sseq) {
+                            for (let i_sense = 0; i_sense < response[i1].def[0].sseq.length; i_sense++) {
+                                // console.log(response[i1].def[0].sseq[i_sense]);
+                                for (const sense_item of response[i1].def[0].sseq[i_sense]) {
+                                    let definition_str = JSON.stringify(sense_item);
+                                    // console.log(definition_str)
+                                    const defRe = /("sn":"[\(\d\w\s\)]+)(?:",)(?:"sls":\[")(.*?)(?:"\]\})|("sn":"[\(\d\w\s\)]+)(?:",)(?:"sls":\[")(.*?)(?:"\],"dt")(?:.*{bc})(.*?)(?:"\])|("sn":"[\(\d\w\s\)]+)(?:","dt":.*?{bc})(.*?)(?:"\])|("sn":"[\(\d\w\s\)]+)(?:.*?)(?:"dt":.*?"{bc})(.*?)(?:"\])/g;
+                                    let defMatch;
+                                    while ((defMatch = defRe.exec(definition_str))) {
+                                        // console.log(defMatch)
+                                        if (defMatch && defMatch.length > 0) {
+                                            for (let i = 1; i < defMatch.length; i++) {
+                                                let definition = defMatch[i];
+                                                // console.log(definition);
+                                                const cleanDefRe = /sx\||\{dx_def\}|dxt\||\{\/dx_def\}|\{dx\}|\{\/dx\}|d_link\||a_link\||i_link\||et_link\|/g;
+                                                const spaceDefRe = /\|\|/g;
+                                                const breakDefRe = /\{bc\}/g;
+                                                const italicsLDefRe = /\{it\}/g
+                                                const italicsRDefRe = /\{\/it\}/g
+                                                const stylisedSn = /"sn":"([\(\d\w\s\)]+)/g
+                                                // const styleGreenReference  = /\{([\w\n\s]+)\}|\{([\w\n\s]+)|([\w\n\s]+)\}/g
+                                                const styleGreenReference  = /\{([\w\n\s]+)\}|\{([\w\n\s]+)\|([\w\n\s]+)\}/g
+                                                if (definition) {
+                                                    let cleanedDefinition = definition.replace(cleanDefRe, '').replace(spaceDefRe, ' ').replace(breakDefRe, '\n').replace(italicsLDefRe, '<it>').replace(italicsRDefRe, '</it>').replace(stylisedSn, '<span style="position: relative; left: -40px; top:24px;color:darkorange">$1</span>').replace(styleGreenReference, '<span style="color:#76B900">$1</span>');
+                                                    // console.log(cleanedDefinition)
+                                                    MW_results += '<span style="padding-left: 20px; font-size: smaller">' + cleanedDefinition + '</span>' + '<br>'
+                                                }
                                             }
                                         }
                                     }
@@ -214,13 +244,8 @@ function getResultsFromMeriamWebster() {
                     }
                 }
             }
-            if (MW_results.length === 0) {
-                document.getElementById('Meriam-Webster-output').getElementsByTagName('p')[0].textContent += "The word you're looking for is not in this dictionary.";
-            } else {
-                // console.log(MW_results)
-                document.getElementById('Meriam-Webster-output').getElementsByTagName('p')[0].innerHTML = MW_results;
-            }
-
+            // console.log(MW_results)
+            document.getElementById('Meriam-Webster-output').getElementsByTagName('p')[0].innerHTML = MW_results;
             document.getElementById('results').scrollIntoView()
         }
     })
@@ -318,6 +343,7 @@ function getResultsFromUrban() {
                     urbanList.appendChild(li);
                 });
                 document.getElementById('Urban-output').getElementsByTagName('p')[0].appendChild(urbanList);
+                document.getElementById('results').scrollIntoView()
             }
         })
 };
