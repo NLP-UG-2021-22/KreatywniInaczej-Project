@@ -80,6 +80,48 @@ nav li:hover {
 }
 
 /* #endregion GLOBAL ========================== */
+/* #region  BACK_TO_TOP_BUTTON ==============================*/
+
+#backToTopButton {
+    display: inline-block;
+    background-color: darkorange;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s, 
+      opacity .5s, visibility .5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+  }
+
+#backToTopButton::after {
+    
+    font-weight: normal;
+    font-style: normal;
+    line-height: 50px;
+    color: #fff;
+}
+
+#backToTopButton:hover {
+    cursor: pointer;
+    background-color: #333;
+}
+
+#backToTopButton:active {
+    background-color: #555;
+}
+
+#backToTopButton.showBackToTopButton {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* #endregion BACK_TO_TOP_BUTTON ========================== */
 /* #region MAIN ==============================*/
 
 #instruction {
