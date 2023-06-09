@@ -37,7 +37,7 @@ function ToggleLogos() {
 
 function getResults() {
 
-    document.getElementById('Meriam-Webster-output').getElementsByTagName('h6')[0].innerHTML = 'Meriam-Webster';
+    document.getElementById('Meriam-Webster-output').getElementsByTagName('h6')[0].innerHTML = 'Merriam-Webster';
     getResultsFromMeriamWebster();
 
     document.getElementById('Wiktionary-output').getElementsByTagName('h6')[0].innerHTML = 'Wiktionary';
@@ -133,6 +133,9 @@ function getResultsFromMeriamWebster() {
     document.getElementById('Meriam-Webster-output').getElementsByTagName('p')[0].innerHTML = "";
 
     let wordVal = inputWord.value;
+    if(wordVal === '') {
+        document.getElementById('Meriam-Webster-output').getElementsByTagName('p')[0].innerHTML += "The word you're looking for is not in this dictionary."
+    }
     let url = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${wordVal}?key=d49265f5-c895-4871-bcb3-e38010cfdb7f`
 
     let MW_results = ''
@@ -214,9 +217,9 @@ function getResultsFromMeriamWebster() {
                                                 // const styleGreenReference  = /\{([\w\n\s]+)\}|\{([\w\n\s]+)|([\w\n\s]+)\}/g
                                                 const styleGreenReference  = /\{([\w\n\s]+)\}|\{([\w\n\s]+)\|([\w\n\s]+)\}/g
                                                 if (definition) {
-                                                    let cleanedDefinition = definition.replace(cleanDefRe, '').replace(spaceDefRe, ' ').replace(breakDefRe, '\n').replace(italicsLDefRe, '<it>').replace(italicsRDefRe, '</it>').replace(stylisedSn, '<span style="position: relative; left: -40px; top:24px;color:darkorange">$1</span>').replace(styleGreenReference, '<span style="color:#76B900">$1</span>');
+                                                    let cleanedDefinition = definition.replace(cleanDefRe, '').replace(spaceDefRe, ' ').replace(breakDefRe, '\n').replace(italicsLDefRe, '<it>').replace(italicsRDefRe, '</it>').replace(stylisedSn, '<span style="position: relative; left: -40px; top:29px;color:darkorange">$1</span>').replace(styleGreenReference, '<span style="color:#76B900">$1</span>');
                                                     // console.log(cleanedDefinition)
-                                                    MW_results += '<span style="padding-left: 20px; font-size: smaller">' + cleanedDefinition + '</span>' + '<br>'
+                                                    MW_results += '<span style="padding-left: 20px; font-weight: normal">' + cleanedDefinition + '</span>' + '<br>'
                                                 }
                                             }
                                         }
@@ -239,6 +242,11 @@ function getResultsFromWiktionary() {
     document.getElementById('Wiktionary-output').getElementsByTagName('p')[0].innerHTML = "<br>";
 
     let wordVal = inputWord.value;
+
+    if(wordVal === '') {
+        setEmptyAlertInWiktionary()
+    }
+
     const url = 'https://en.wiktionary.org/w/api.php?origin=*&action=query&format=json&prop=extracts&exsectionformat=plain&titles=' + wordVal.trim().toLowerCase();
     
     fetch(url)
@@ -283,7 +291,19 @@ function getResultsFromWiktionary() {
                 section.includes('\"Article') ||
                 section.includes('\"Interjection') ||
                 section.includes('\"Conjunction')) {
-                    section = section.replaceAll(/<\/?h3>|<\/?h4>|<\/?h5>/g, '');
+                    section = section.replaceAll(/<\/?h3>|<\/?h4>|<\/?h5>|<b>|<\/?dd>|<\/?dl>|<\/?span>|<\/?p>/g, '');
+                    section = section.replace('<ol>', '')
+                    section = section.replaceAll('>Noun','><span style="color:#808080; font-weight: bold">Noun</span>');
+                    section = section.replaceAll('>Verb','><span style="color:#808080; font-weight: bold">Verb</span>');
+                    section = section.replaceAll('>Adjective','><span style="color:#808080; font-weight: bold">Adjective</span>');
+                    section = section.replaceAll('>Adverb','><span style="color:#808080; font-weight: bold">Adverb</span>');
+                    section = section.replaceAll('>Pronoun','><span style="color:#808080; font-weight: bold">Pronoun</span>');
+                    section = section.replaceAll('>Preposition','><span style="color:#808080; font-weight: bold">Preposition</span>');
+                    section = section.replaceAll('>Article','><span style="color:#808080; font-weight: bold">Article</span>');
+                    section = section.replaceAll('>Interjectio','><span style="color:#808080; font-weight: bold">Interjectio</span>');
+                    section = section.replaceAll('>Conjunction','><span style="color:#808080; font-weight: bold">Conjunction</span>');
+                    section = section.replace(`>${wordVal}`,`><span style=color:#76B900>${wordVal}</span>`)
+                    console.log(section)
                     text_pos.push(section);
                 }
             });
