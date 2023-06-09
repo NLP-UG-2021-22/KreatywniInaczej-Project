@@ -1,4 +1,5 @@
 const inputWord = document.getElementById('inputWord');
+const wordOfTheDayContainer = document.getElementById('wotd_container');
 
 function deactivate(dictionary) {
     var dictionaryLogo = document.getElementById(dictionary.concat('-button'))
@@ -42,7 +43,7 @@ function getResults() {
 
     document.getElementById('Wiktionary-output').getElementsByTagName('h6')[0].innerHTML = 'Wiktionary';
     getResultsFromWiktionary();
-    
+
     document.getElementById('Urban-output').getElementsByTagName('h6')[0].innerHTML = 'Urban';
     getResultsFromUrban();
 
@@ -69,6 +70,8 @@ document.addEventListener("DOMContentLoaded", function () {
             tooltip.hide();
         });
     });
+
+    getWordOfTheDay();
 });
 
 // adjusts darkmode when loading the page
@@ -148,11 +151,11 @@ function getResultsFromMeriamWebster() {
                 document.getElementById('Meriam-Webster-output').getElementsByTagName('p')[0].innerHTML += '<i><span style="color:#76B900; font-weight: bolder">' + response[i0] + '</span></i><br>';
                 document.getElementById('results').scrollIntoView()
             }
-        } 
+        }
         else if (Array.isArray(response) && response.length === 0) {
 
             document.getElementById('Meriam-Webster-output').getElementsByTagName('p')[0].innerHTML += "The word you're looking for is not in this dictionary."
-        } 
+        }
         else {
             for (let i1 = 0; i1 < response.length; i1++) {
                 // && response[i1].id.includes(word)
@@ -240,7 +243,7 @@ function getResultsFromWiktionary() {
 
     let wordVal = inputWord.value;
     const url = 'https://en.wiktionary.org/w/api.php?origin=*&action=query&format=json&prop=extracts&exsectionformat=plain&titles=' + wordVal.trim().toLowerCase();
-    
+
     fetch(url)
     .then(response => response.json())
     .then(response => {
@@ -250,10 +253,10 @@ function getResultsFromWiktionary() {
                 setEmptyAlertInWiktionary();
                 return;
             }
-            
+
             //Find all headers
             text = response.replaceAll('<h2>', 'QQQ<h2>').split('QQQ');
-            
+
             //Find English
             let english_text;
             text.forEach((x) => {
@@ -261,16 +264,16 @@ function getResultsFromWiktionary() {
                     english_text = x;
                 }
             });
-            
+
             if (!english_text) {
                 setEmptyAlertInWiktionary();
                 return;
             }
             text = english_text;
-            
+
             //Clean data
             text = text.replaceAll('\\n', '').replaceAll('<span id=', 'QQQ<span id=').split('QQQ');
-            
+
             //Find different meanings
             let text_pos = []
             text.forEach(section => {
@@ -287,11 +290,11 @@ function getResultsFromWiktionary() {
                     text_pos.push(section);
                 }
             });
-            
+
             document.getElementById('Wiktionary-output').getElementsByTagName('p')[0].innerHTML += text_pos.join('');
         });
     };
-    
+
 function setEmptyAlertInWiktionary() {
     document.getElementById('Wiktionary-output').getElementsByTagName('p')[0].textContent += "The word you're looking for is not in this dictionary.";
 }
@@ -300,7 +303,7 @@ function getResultsFromUrban() {
 
     document.getElementById('Urban-output').getElementsByTagName('p')[0].innerHTML = "<br>";
 
-    
+
     let wordVal = inputWord.value;
     let url = 'https://mashape-community-urban-dictionary.p.rapidapi.com/define?term=' + wordVal.trim().toLowerCase();
     console.log(url);
@@ -330,6 +333,48 @@ function getResultsFromUrban() {
             }
         })
 };
+
+function getWordOfTheDay() {
+    const url = 'https://urban-dictionary7.p.rapidapi.com/v0/words_of_the_day';     // for word of the day
+    //const url = 'https://urban-dictionary7.p.rapidapi.com/v0/random';             // for random word every time
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'e2366fd9d1mshc2654b507d6bbc9p1e926djsncfb3238af786',
+            'X-RapidAPI-Host': 'urban-dictionary7.p.rapidapi.com'
+        }
+    };
+
+    try {
+        fetch(url, options).then(response => response.json()).then(response => {
+            wordOfTheDayContainer.innerHTML = "";
+
+            // Extract necessary data
+            let word = response.list[0].word;
+            let firstDefinition = response.list[0].definition;
+            let link = response.list[0].permalink;
+
+            // Create HTML elements
+            let newPara = document.createElement('p');
+            let wotdHeading = document.createElement('h5');
+            wotdHeading.innerText = word;
+            let definitionSpan = document.createElement('span');
+            definitionSpan.innerText = firstDefinition;
+            let linkSpan = document.createElement('a');
+            linkSpan.innerText = "See the whole entry on Urban Dictionary";
+            linkSpan.setAttribute('href', link);
+            newPara.appendChild(wotdHeading);
+            newPara.appendChild(definitionSpan);
+            newPara.appendChild(linkSpan);
+
+            // Connect HTML elements with the relevant container in the DOM
+            wordOfTheDayContainer.appendChild(newPara);
+        });
+    } catch (error) {
+        console.error(error);
+        wordOfTheDayContainer.innerHTML = "Failed to load the word of the day :(";
+    }
+}
 
 let mybutton = document.getElementById("btn-back-to-top");
 
