@@ -59,7 +59,7 @@ nav li:hover {
 #logo {
     max-height: 8vh;
     border-radius: 50%;
-} 
+}
 
 .darkmode_button.toDark {
     background:rgba(12, 16, 34, 1);
@@ -77,6 +77,14 @@ nav li:hover {
 
 .fa-moon.darkmode {
     color: rgba(12, 16, 34, 1);
+}
+
+#wotd_container a {
+    display: block;
+}
+
+#wotd_container a:hover {
+    color: black !important;
 }
 
 /* #endregion GLOBAL ========================== */
@@ -188,7 +196,7 @@ h1 {
 }
 
 .my-2 {
-    margin-top: 0 !important; 
+    margin-top: 0 !important;
     margin-bottom: 0 !important;
 }
 
