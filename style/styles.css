@@ -19,7 +19,7 @@ footer {
     min-height: 6.43vh;
     background: #F4F6F6;
     text-align: center;
-    padding-top: 0.6vw;
+    padding-top: 1.3vh;
     margin-top: auto;
     background: rgba(44, 62, 80, 1);
     color: white;
@@ -108,7 +108,8 @@ nav li:hover {
 /* #region MAIN ==============================*/
 
 #instruction {
-    padding: 10vh;
+    padding-top: 10vh;
+    padding-bottom: 6vh;
 }
 
 #dictionaries {
@@ -116,7 +117,6 @@ nav li:hover {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    padding-left: 5%;
     padding-bottom: 2.6vh;
     text-align: center;
     min-width: fit-content !important;
@@ -191,6 +191,14 @@ h1 {
     bottom: 20px;
     right: 20px;
     display: none;
+}
+
+.form-check {
+    padding-left: 0;
+}
+
+#instruction h5 {
+    padding-top: 1vh;
 }
 
 /* #endregion MAIN ===========================*/
