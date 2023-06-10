@@ -246,7 +246,7 @@ function getResultsFromWiktionary() {
 
     let wordVal = inputWord.value;
 
-    if(wordVal === '') {
+    if(wordVal === ''|| wordVal.trim() === "") {
         setEmptyAlertInWiktionary()
     }
 
@@ -379,7 +379,7 @@ function getWordOfTheDay() {
             let wotdHeading = document.createElement('h5');
             wotdHeading.innerText = word;
             let definitionSpan = document.createElement('span');
-            definitionSpan.innerText = firstDefinition;
+            definitionSpan.innerText = firstDefinition.replaceAll('[', '').replaceAll(']', '');
             let linkSpan = document.createElement('a');
             linkSpan.innerText = "See the whole entry on Urban Dictionary";
             linkSpan.setAttribute('href', link);

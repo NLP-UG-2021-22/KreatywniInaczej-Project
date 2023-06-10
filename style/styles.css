@@ -84,7 +84,24 @@ nav li:hover {
 }
 
 #wotd_container a:hover {
-    color: black !important;
+    color: #2c3e50 !important;
+}
+
+#wotd_container h5 {
+    color: #808080;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+#wotd_container p {
+    font:'AmstelvarAlpha', sans-serif;
+    font-style: oblique 23deg;
+  }
+
+.alert-heading {
+    text-align: center; 
+    color: #2c3e50; 
+    font-weight: bold;
 }
 
 /* #endregion GLOBAL ========================== */
