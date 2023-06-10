@@ -108,7 +108,8 @@ nav li:hover {
 /* #region MAIN ==============================*/
 
 #instruction {
-    padding: 10vh;
+    padding-top: 10vh;
+    padding-bottom: 6vh;
 }
 
 #dictionaries {
@@ -116,7 +117,6 @@ nav li:hover {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    padding-left: 5%;
     padding-bottom: 2.6vh;
     text-align: center;
     min-width: fit-content !important;
@@ -193,6 +193,13 @@ h1 {
     display: none;
 }
 
+.form-check {
+    padding-left: 0;
+}
+
+#instruction h5 {
+    padding-top: 1vh;
+}
 /* #endregion MAIN ===========================*/
 /* #region DICTIONARIES ==============================*/
 #dict-description {
