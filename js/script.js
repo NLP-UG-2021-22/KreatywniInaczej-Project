@@ -220,7 +220,7 @@ function getResultsFromMeriamWebster() {
                                                 // const styleGreenReference  = /\{([\w\n\s]+)\}|\{([\w\n\s]+)|([\w\n\s]+)\}/g
                                                 const styleGreenReference  = /\{([\w\n\s]+)\}|\{([\w\n\s]+)\|([\w\n\s]+)\}/g
                                                 if (definition) {
-                                                    let cleanedDefinition = definition.replace(cleanDefRe, '').replace(spaceDefRe, ' ').replace(breakDefRe, '\n').replace(italicsLDefRe, '<it>').replace(italicsRDefRe, '</it>').replace(stylisedSn, '<span style="position: relative; left: -40px; top:29px;color:darkorange">$1</span>').replace(styleGreenReference, '<span style="color:#76B900">$1</span>');
+                                                    let cleanedDefinition = definition.replace(cleanDefRe, '').replace(spaceDefRe, ' ').replace(breakDefRe, '\n').replace(italicsLDefRe, '<it>').replace(italicsRDefRe, '</it>').replace(stylisedSn, '<span style="position: relative; left: -40px; top:25px;color:darkorange">$1</span>').replace(styleGreenReference, '<span style="color:#76B900">$1</span>');
                                                     // console.log(cleanedDefinition)
                                                     MW_results += '<span style="padding-left: 20px; font-weight: normal">' + cleanedDefinition + '</span>' + '<br>'
                                                 }
