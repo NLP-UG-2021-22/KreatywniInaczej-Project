@@ -301,7 +301,17 @@ td {
     #Meriam-Webster-output,
     #Wiktionary-output,
     #Urban-output{
-        max-width: 100% ;
+        max-width: 100%;
+    }
+
+    #Wiktionary-output {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #Urban-output {
+        margin-left: -40px;
+        max-width: 120%;
     }
 
     /* body {

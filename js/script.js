@@ -306,7 +306,6 @@ function getResultsFromWiktionary() {
                     section = section.replaceAll('>Interjectio','><span style="color:#808080; font-weight: bold">Interjectio</span>');
                     section = section.replaceAll('>Conjunction','><span style="color:#808080; font-weight: bold">Conjunction</span>');
                     section = section.replace(`>${wordVal}`,`><span style=color:#76B900>${wordVal}</span>`)
-                    console.log(section)
                     text_pos.push(section);
                 }
             });
